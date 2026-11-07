@@ -69,3 +69,16 @@ resource "aws_vpc_endpoint" "miya_end_logs" {
     Name = "miya_end_logs"
   }
 }
+
+resource "aws_vpc_endpoint" "miya_end_s3ec2repo" {
+  vpc_id              = aws_vpc.miya_apnorth_vpc01.id
+  service_name        = "com.amazonaws.ap-northeast-1.s3"
+  vpc_endpoint_type   = "Gateway"
+  route_table_ids = [
+      aws_route_table.miya_private-route.id
+    ]
+
+  tags = {
+    Name = "miya_end_s3ec2repo"
+  }
+}
